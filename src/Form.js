@@ -3,7 +3,7 @@ import message_templates from './json/message_templates.json';
 import companies_list from './json/Companies';
 import guests_list from './json/Guests';
 import CreateYourOwn from './CreateYourOwn';
-import { Button, FormControl, ControlLabel } from 'react-bootstrap';
+import { Button, FormControl } from 'react-bootstrap';
 
 class Form extends Component {
 
@@ -41,7 +41,7 @@ class Form extends Component {
       this.setState({ company });
     } else if(type === 'message') {
       const text = message_templates[itemKEY];
-      this.setState({ message: text })
+      this.setState({ message: text });
     }
   }
 
@@ -63,17 +63,15 @@ class Form extends Component {
     return (
       <div className="form">
           <form onSubmit={this.handleSubmit}>
-              <ControlLabel>Select a Company</ControlLabel>
               <FormControl componentClass="select" required onChange={(event) => this.handleOnChange(event, 'company')}>
-                <option value="">Select here</option>
+                <option value="">Select a Company</option>
                 {companies_list.map((value, key) => 
                   <option value={key} key={key}>{value.company}</option>
                 )}
               </FormControl>              
               <br/><br/>
-              <ControlLabel>Select a Guest</ControlLabel>
               <FormControl componentClass="select" required onChange={(event) => this.handleOnChange(event, 'guest')}>
-                <option value="">Select here</option>
+                <option value="">Select a Guest</option>
                 {guests_list.map((value, key) => 
                   <option value={key} key={key}>{value.firstName + ' ' + value.lastName}</option>
                 )}
@@ -81,9 +79,8 @@ class Form extends Component {
               <br/><br/>  
               {!this.state.createYourOwnVisible ?     
               <div>          
-                <ControlLabel>Select a Premade Message Template</ControlLabel>
                 <FormControl componentClass="select" required onChange={(event) => this.handleOnChange(event, 'message')}>
-                  <option value="">Select here</option>
+                  <option value="">Select a Premade Message Template</option>
                   {message_templates.map((value, key) => 
                     <option value={key} key={key}>{value.type}</option>
                   )}

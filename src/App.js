@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Form from './Form';
 import MessageDisplay from './MessageDisplay';
+import { getTimeZone, getStartEndDates } from './utils';
 
 class App extends Component {
 
@@ -20,47 +21,45 @@ class App extends Component {
   }
 
   personalizeMessage = (values) => {
-    // store the key variables in an object
+    const guest = values.guest;
+    const company = values.company;
+    const reservationDates = getStartEndDates(company.timezone, guest.reservation.startTimestamp, guest.reservation.endTimestamp);
+  
+    // stores the key variables in an object
     const content = {
       greeting: this.state.greetingMessage,
-      firstName: values.guest.firstName,
-      lastName: values.guest.lastName,
-      roomNumber: values.guest.reservation.roomNumber,
-      company: values.company.company,
-      city: values.company.city      
+      firstName: guest.firstName,
+      lastName: guest.lastName,
+      roomNumber: guest.reservation.roomNumber,
+      startDate: reservationDates.startDate,
+      endDate: reservationDates.endDate,
+      company: company.company,
+      city: company.city      
     }
 
-    const message = values.message.text;
+    const message = values.message.text; // stores the templated message to message constant
     // replaces the given string with the selected values
     var result = message.replace('$greeting$', content.greeting)
                 .replace('$firstName$', content.firstName)
                 .replace('$lastName$', content.lastName)
+                .replace('$startDate$', content.startDate)
+                .replace('$endDate$', content.endDate)
                 .replace('$company$', content.company)
                 .replace('$city$', content.city)
                 .replace('$roomNumber$', content.roomNumber)
                 .replace('$greeting', content.greeting)
 
     this.setState({ personalizedMessage: result })  
-  }
-
-  getTimeZone = (timezone) => {
-    if(timezone === 'US/Pacific') {
-      return 'America/Los_Angeles';
-    } else if(timezone === 'US/Central') {
-      return 'America/Chicago';
-    } else if(timezone === 'US/Eastern') {
-      return 'America/New_York';
-    }
-  }
+  } 
 
   /*
     Sets the greetingMessage based on the timezone of the company
   */
   setGreetingMessage = (company_timezone) => {
     const date = new Date(); // Date in current location
-    const timezone = this.getTimeZone(company_timezone); // set timezone based on company location
+    const timezone = getTimeZone(company_timezone); // set timezone based on company location
     var dateTimeZoned = date.toLocaleString('en-US', { timeZone: timezone, hour12: false }); // convert date Object to string based on timezone
-    var hour2Digit = dateTimeZoned.slice(12, 14); // '10/10/2010, 13:00' -> '13'
+    var hour2Digit = dateTimeZoned.split(',')[1].slice(1,3); // '10/10/2010, 13:00' -> '13'
     hour2Digit = parseInt(hour2Digit); // convert string to integer
 
     // Set the greetingMessage based on hour2Digit

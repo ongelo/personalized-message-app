@@ -1,16 +1,15 @@
 .app {
 	margin-top: 40px;
 	background-color: #F8F9F9;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 	border-radius: 8px;	
-	margin-right: 30px;
-	margin-left: 30px;
+	margin-right: 5%;
+	margin-left: 5%;
 }
 
-.message-display, .form {
-	padding: 80px;
-	padding-top: 50px;
-	margin: 0 auto;
+.form {
+	padding: 8%;
+	padding-top: 4%;
 }
 
 .form-submit-btn {
