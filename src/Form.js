@@ -3,6 +3,7 @@ import message_templates from './json/message_templates.json';
 import companies_list from './json/Companies';
 import guests_list from './json/Guests';
 import CreateYourOwn from './CreateYourOwn';
+import { Button, FormControl, ControlLabel } from 'react-bootstrap';
 
 class Form extends Component {
 
@@ -21,6 +22,7 @@ class Form extends Component {
   */
   handleSubmit = (event) => {
     event.preventDefault();
+    this.props.toggleShowMessageDisplay();
     this.props.setFormSubmit(this.state);
   }
 
@@ -61,39 +63,39 @@ class Form extends Component {
     return (
       <div className="form">
           <form onSubmit={this.handleSubmit}>
-              Select a Company<br/>
-              <select required onChange={(event) => this.handleOnChange(event, 'company')}>
+              <ControlLabel>Select a Company</ControlLabel>
+              <FormControl componentClass="select" required onChange={(event) => this.handleOnChange(event, 'company')}>
                 <option value="">Select here</option>
                 {companies_list.map((value, key) => 
                   <option value={key} key={key}>{value.company}</option>
                 )}
-              </select>              
+              </FormControl>              
               <br/><br/>
-              Select a Guest<br/>
-              <select required onChange={(event) => this.handleOnChange(event, 'guest')}>
+              <ControlLabel>Select a Guest</ControlLabel>
+              <FormControl componentClass="select" required onChange={(event) => this.handleOnChange(event, 'guest')}>
                 <option value="">Select here</option>
                 {guests_list.map((value, key) => 
                   <option value={key} key={key}>{value.firstName + ' ' + value.lastName}</option>
                 )}
-              </select>      
+              </FormControl>      
               <br/><br/>  
               {!this.state.createYourOwnVisible ?     
               <div>          
-                Select a Premade Message Template<br/>
-                <select required onChange={(event) => this.handleOnChange(event, 'message')}>
+                <ControlLabel>Select a Premade Message Template</ControlLabel>
+                <FormControl componentClass="select" required onChange={(event) => this.handleOnChange(event, 'message')}>
                   <option value="">Select here</option>
                   {message_templates.map((value, key) => 
                     <option value={key} key={key}>{value.type}</option>
                   )}
-                </select>
-                <br/><br/>
-                OR
-                <br/><br/>
-                <div className="btn" onClick={this.toggleCreateYourOwn}>Create Your Own Template</div>                
+                </FormControl>
+                <br/>
+                <div>Or you can create your own template by clicking below!</div>
+                <br/>
+                <Button bsStyle="default" onClick={this.toggleCreateYourOwn}>Create Your Own Template</Button>                
               </div> : <CreateYourOwn toggleCreateYourOwn={this.toggleCreateYourOwn} setCustomizedMessage={this.setCustomizedMessage} /> }
 
               <br/><br/>            
-              <input type="submit" value="Generate Message" />            
+              <Button bsStyle="success" className="form-submit-btn" type="submit">Generate Message</Button>            
           </form>
       </div>
     );

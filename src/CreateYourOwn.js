@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FormControl, Button } from 'react-bootstrap';
 
 class CreateYourOwn extends Component {
 
@@ -29,9 +30,9 @@ class CreateYourOwn extends Component {
       		<li>Company City: <code>$city$</code></li>
       	</ul>	
       	<br/>
-        <textarea onChange={this.handleOnChange} value={this.state.message} rows="4" cols="50" placeholder="Enter your message template here.." /> 
+        <FormControl componentClass="textarea" onChange={this.handleOnChange} value={this.state.message} rows="4" cols="50" placeholder="Enter your message template here.." /> 
         <br/><br/>
-        <div className="btn" onClick={this.props.toggleCreateYourOwn}>Go Back to Premade Message Templates</div>
+        <Button bsStyle="default" onClick={this.props.toggleCreateYourOwn}>Go Back to Premade Message Templates</Button>
       </div>
     );
   }

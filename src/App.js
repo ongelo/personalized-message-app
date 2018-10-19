@@ -9,7 +9,8 @@ class App extends Component {
     super();
     this.state = {
       personalizedMessage: null,
-      greetingMessage: null
+      greetingMessage: null,
+      showMessageDisplay: false
     }
   }
 
@@ -72,15 +73,21 @@ class App extends Component {
     }    
   }
 
+  toggleShowMessageDisplay = () => {
+    this.setState({ showMessageDisplay: !this.state.showMessageDisplay })
+  }
 
   render() {
     return (
       <div className="app">
          <Form 
             setFormSubmit={this.getFormSubmit}
+            toggleShowMessageDisplay={this.toggleShowMessageDisplay}
          />
          <MessageDisplay 
             personalizedMessage={this.state.personalizedMessage}
+            visible={this.state.showMessageDisplay}
+            toggleShowMessageDisplay={this.toggleShowMessageDisplay}
          />
       </div>
     );

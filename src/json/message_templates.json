@@ -17,7 +17,7 @@
 	{
 		"id": 4,
 		"type": "Check Out",
-		"text": "$greeting$ $firstName$, we'd like to inform you that we expect you to check out the room $roomNumber$ at $company$ at 12:00pm tomorrow."
+		"text": "$greeting$ $firstName$, we'd like to inform you that we expect you to check out of room $roomNumber$ at $company$ at 12:00pm tomorrow."
 	},	
 	{
 		"id": 5,
