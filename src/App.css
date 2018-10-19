@@ -1,0 +1,22 @@
+.app {
+	text-align: center;
+	margin-top: 40px;
+}
+
+.message-display, .form {
+	padding: 50px;
+	margin: 0 auto;
+	margin-right: 30px;
+	margin-left: 30px;
+	background-color: #F8F9F9;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+	color: crimson;
+	cursor: pointer;
+}
+
+ul {
+	list-style-type: none;
+}

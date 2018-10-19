@@ -1,0 +1,27 @@
+[
+	{
+		"id": 1,
+		"type": "Room Ready",
+		"text": "$greeting$ $firstName$, and welcome to $company$! Room $roomNumber$ is now ready for you. Enjoy your stay, and let us know if you need anything."
+	},
+	{
+		"id": 2,
+		"type": "Breakfast Info",
+		"text": "$greeting$ $firstName$, this message is to inform you that the breakfast at $company$ ends at 10:00am."
+	},
+	{
+		"id": 3,
+		"type": "Room Service",
+		"text": "$greeting$ $firstName$, we received your request for room service for room $roomNumber$ at $company$."
+	},
+	{
+		"id": 4,
+		"type": "Check Out",
+		"text": "$greeting$ $firstName$, we'd like to inform you that we expect you to check out the room $roomNumber$ at $company$ at 12:00pm tomorrow."
+	},	
+	{
+		"id": 5,
+		"type": "Lost & Found",
+		"text": "$greeting$ $firstName$, I'm contacting you from $company$ in $city$ regarding a found belonging in the room (room $roomNumber$) you stayed at. Please call us for more information."
+	}	
+]
